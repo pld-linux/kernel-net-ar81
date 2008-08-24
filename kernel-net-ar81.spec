@@ -8,7 +8,6 @@
 %define	alt_kernel	grsecurity
 %endif
 #
-%define		_modname	rt2400
 Summary:	Linux driver for the Atheros AR8121/8131 PCI-E cards
 Name:		kernel%{_alt_kernel}-net-ar81
 Version:	1.0.1.0
