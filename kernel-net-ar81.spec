@@ -8,10 +8,11 @@
 %define	alt_kernel	grsecurity
 %endif
 #
+%define		rel	1
 Summary:	Linux driver for the Atheros AR8121/8131 PCI-E cards
 Name:		kernel%{_alt_kernel}-net-ar81
 Version:	1.0.1.0
-Release:	1
+Release:	%{rel}@%{_kernel_ver_str}
 License:	GPL v2
 Group:		Base/Kernel
 # Source0:	http://dl.sourceforge.net/rt2400/%{name}-%{version}%{snap}.tar.gz
@@ -20,10 +21,11 @@ Source0:	AR81Family-linux-v%{version}.tar.gz
 URL:		http://www.unav-micro.com/Drivers.aspx
 BuildRequires:	dos2unix
 %{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.20.2}
+BuildRequires:	perl-base
 BuildRequires:	rpmbuild(macros) >= 1.379
 %{?with_dist_kernel:%requires_releq_kernel}
-%{?with_dist_kernel:Requires(postun):   kernel}
-BuildRequires:	perl-base
+Requires(post,postun):	/sbin/depmod
+Provides:	kernel(atl1e) = %{version}-%{rel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -63,5 +65,5 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc readme release_note.txt
-/lib/modules/%{_kernel_ver}/kernel/drivers/net/*.ko*
+/lib/modules/%{_kernel_ver}/kernel/drivers/net/atl1e.ko*
 %{_mandir}/man7/*.gz
