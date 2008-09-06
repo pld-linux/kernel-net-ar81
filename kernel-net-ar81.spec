@@ -15,7 +15,6 @@ Version:	1.0.1.0
 Release:	%{rel}@%{_kernel_ver_str}
 License:	GPL v2
 Group:		Base/Kernel
-# Source0:	http://dl.sourceforge.net/rt2400/%{name}-%{version}%{snap}.tar.gz
 Source0:	AR81Family-linux-v%{version}.tar.gz
 # Source0-md5:	e9559d2ae25be6db327c7ec40e922438
 URL:		http://www.unav-micro.com/Drivers.aspx
