@@ -1,4 +1,8 @@
 #
+# TODO:
+#		- remove from cvs when 2.6.27@kernel.spec will be ready.
+#		http://git.kernel.org/?p=linux/kernel/git/torvalds/linux-2.6.git;a=commit;h=a6a5325239c20202e18e21e94291bccc659fbf9e
+#
 # Conditional build:
 %bcond_without	dist_kernel	# allow non-distribution kernel
 %bcond_with	verbose		# verbose build (V=1)
