@@ -64,4 +64,4 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc readme release_note.txt
 /lib/modules/%{_kernel_ver}/kernel/drivers/net/atl1e.ko*
-%{_mandir}/man7/*.gz
+%{_mandir}/man7/*
