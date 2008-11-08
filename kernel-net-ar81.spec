@@ -36,10 +36,10 @@ This package contains Linux module.
 find . -type f | xargs dos2unix
 
 %build
-cat > src/Makefile << EOF
+cat > src/Makefile << 'EOF'
 CFILES = at_main.c at_hw.c at_param.c at_ethtool.c kcompat.c
 obj-m += atl1e.o
-atl1e-objs := \$(CFILES:.c=.o)
+atl1e-objs := $(CFILES:.c=.o)
 EXTRA_CFLAGS += -DDBG=0
 EOF
 
