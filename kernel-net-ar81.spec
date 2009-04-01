@@ -7,7 +7,7 @@
 %bcond_without	dist_kernel	# allow non-distribution kernel
 %bcond_with	verbose		# verbose build (V=1)
 #
-%define		rel	1
+%define		rel	2
 Summary:	Linux driver for the Atheros AR8121/8131 PCI-E cards
 Name:		kernel%{_alt_kernel}-net-ar81
 Version:	1.0.1.0
@@ -16,6 +16,7 @@ License:	GPL v2
 Group:		Base/Kernel
 Source0:	AR81Family-linux-v%{version}.tar.gz
 # Source0-md5:	e9559d2ae25be6db327c7ec40e922438
+Patch0:		kernel-net-ar81-2.6.29.patch
 URL:		http://www.unav-micro.com/Drivers.aspx
 BuildRequires:	dos2unix
 %{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.20.2}
@@ -34,6 +35,7 @@ This package contains Linux module.
 %prep
 %setup -q -c %{name}
 find . -type f | xargs dos2unix
+%patch0 -p1
 
 %build
 cat > src/Makefile << 'EOF'
