@@ -1,0 +1,38 @@
+--- kernel-net-ar81-1.0.1.0/src/at_main.c.	2009-04-01 18:08:01.041940410 +0200
++++ kernel-net-ar81-1.0.1.0/src/at_main.c	2009-04-01 18:09:13.216350384 +0200
+@@ -858,7 +858,11 @@ at_resume(struct pci_dev *pdev)
+ static pci_ers_result_t at_io_error_detected(struct pci_dev *pdev, pci_channel_state_t state)
+ {
+     struct net_device *netdev = pci_get_drvdata(pdev);
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,29)
++    struct at_adapter *adapter = netdev->ml_priv;
++#else
+     struct at_adapter *adapter = netdev->priv;
++#endif
+ 
+     netif_device_detach(netdev);
+ 
+@@ -881,7 +885,11 @@ static pci_ers_result_t at_io_error_dete
+ static pci_ers_result_t at_io_slot_reset(struct pci_dev *pdev)
+ {
+     struct net_device *netdev = pci_get_drvdata(pdev);
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,29)
++    struct at_adapter *adapter = netdev->ml_priv;
++#else
+     struct at_adapter *adapter = netdev->priv;
++#endif
+ 
+     if (pci_enable_device(pdev)) {
+         printk(KERN_ERR "ATL1e: Cannot re-enable PCI device after reset.\n");
+@@ -908,7 +916,11 @@ static pci_ers_result_t at_io_slot_reset
+ static void at_io_resume(struct pci_dev *pdev)
+ {
+     struct net_device *netdev = pci_get_drvdata(pdev);
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,29)
++    struct at_adapter *adapter = netdev->ml_priv;
++#else
+     struct at_adapter *adapter = netdev->priv;
++#endif
+ 
+     if (netif_running(netdev)) {
+         if (at_up(adapter)) {
