@@ -35,7 +35,7 @@ This package contains Linux module.
 %prep
 %setup -q -c %{name}
 find . -type f | xargs dos2unix
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 cat > src/Makefile << 'EOF'
